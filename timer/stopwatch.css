@@ -1,0 +1,21 @@
+#stopwatch {
+    background: #eee;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 250px;
+  }
+  #sw-time {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+  }
+  #sw-rst, #sw-go {
+    width: 45%;
+    box-sizing: padding-box;
+    padding: 10px;
+    display: inline-block;
+    background: #aa2f2f;
+    border: 0;
+    color: #fff;
+  }
