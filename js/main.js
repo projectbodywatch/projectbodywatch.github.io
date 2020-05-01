@@ -10,6 +10,20 @@ let video;
 let poseNet;
 //let poses = [];
 let pose;
+let options = {
+    architecture: 'MobileNetV1',
+    imageScaleFactor: 0.3,
+    outputStride: 16,
+    flipHorizontal: false,
+    minConfidence: 0.5,
+    maxPoseDetections: 1,
+    scoreThreshold: 0.5,
+    nmsRadius: 20,
+    detectionType: 'single',
+    multiplier: 0.5,
+    quantBytes: 2,
+    inputResolution: 161,
+}
 let skeleton;
 let shoulderL;
 let shoulderR;
@@ -24,13 +38,18 @@ let step = "starting_pose";
 
 function setup() {
     //create camera window and webcam usage.
-    createCanvas(1024, 768);
-    video = createCapture(VIDEO);    
-    poseNet = ml5.poseNet(video, modelReady);
+    createCanvas(800, 600);
+    video = createCapture(VIDEO);
+    // video.size(width, height);
+    poseNet = ml5.poseNet(video, options, check);
     
     poseNet.on('pose', showPoses)
     
     video.hide();
+}
+
+function check() {
+    console.log('check');
 }
 
 function showPoses(poses) {
@@ -39,6 +58,16 @@ function showPoses(poses) {
     if (poses.length > 0) {
         pose = poses[0].pose;
         skeleton = poses[0].skeleton;
+        const nose = pose.nose;
+        const leftShoulder = pose.leftShoulder;
+        const rightShoulder = pose.rightShoulder;
+        console.log("x"+nose.x);
+        console.log("y"+nose.y);
+        if (nose && nose.x && nose.y){
+            if (nose.x < 0 || nose.x > 1024){
+                console.log("nose x position is out of the image");
+            }
+         }
     }
 }
 
@@ -186,28 +215,33 @@ function drawKeyPoints() {
     }
 }
 
-function drawSkeleton() {
-    try {
-        //first 2 points in this array are the shoulders. 
-        let a = skeleton[0][0];
-        let b = skeleton[0][1];
-        
-        //put in global variable for drawKeyPoints
-        shoulderL = a;
-        shoulderR = b;
-        
-        //create middle keypoint for check later on
-        let midX = shoulderL.position.x + (shoulderR.position.x - shoulderL.position.x) * 0.50;
-        let midY = shoulderL.position.y + (shoulderR.position.y - shoulderL.position.y) * 0.50;
-        
-        strokeWeight(3);
-        stroke(255);
-        
-        //draw lines
-        line(a.position.x, a.position.y, b.position.x, b.position.y);  
-        line(pose.nose.x, pose.nose.y, midX, midY);
-    }
-    catch(err) {
-      //console.log("No pose found!");
-    }   
-}
+//function drawSkeleton() {
+//    try {
+//        //first 2 points in this array are the shoulders. 
+//        let a = skeleton[0][0];
+//        let b = skeleton[0][1];
+//        
+//        //put in global variable for drawKeyPoints
+//        shoulderL = a;
+//        shoulderR = b;
+//        
+//        //create middle keypoint for check later on
+//        let midX = shoulderL.position.x + (shoulderR.position.x - shoulderL.position.x) * 0.50;
+//        let midY = shoulderL.position.y + (shoulderR.position.y - shoulderL.position.y) * 0.50;
+//        
+//        strokeWeight(3);
+//        stroke(255);
+//        
+//        //draw lines
+//        line(a.position.x, a.position.y, b.position.x, b.position.y);  
+//        line(pose.nose.x, pose.nose.y, midX, midY);
+//    }
+//    catch(err) {
+//      //console.log("No pose found!");
+//    }   
+//}
+
+//function detectVoid() {
+//    if ()
+//    console.log("Nobody in the canvas");
+//}
