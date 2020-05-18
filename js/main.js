@@ -15,7 +15,7 @@ let options = {
     imageScaleFactor: 0.3,
     outputStride: 16,
     flipHorizontal: false,
-    minConfidence: 0.5,
+    minConfidence: 1,
     maxPoseDetections: 1,
     scoreThreshold: 0.5,
     nmsRadius: 20,
@@ -39,11 +39,11 @@ let step = "starting_pose";
 let reward_good_pose = 'true';
 let frequentTime = 0.25; //voor nu staat hij op 0.25 om te testen maar in productie zou hij bijvoorbeeld 15 staan voor elke kwartier een notification
 let goodPoseTime = 1; //voor nu staat hij op 1 om te testen maar in productie zou hij bijvoorbeeld elke uur kunnen aangeven of je fout heb gezeten
-
+let used = false;
 
 function setup() {
     //create camera window and webcam usage.
-    createCanvas(800, 600);
+    createCanvas(640, 480);
     video = createCapture(VIDEO);
     // video.size(width, height);
     poseNet = ml5.poseNet(video, options, check);
@@ -64,7 +64,7 @@ function check() {
 
 function showPoses(poses) {
     //show pose x and y variables.
-    console.log(poses);
+    // console.log(poses);
     if (poses.length > 0) {
         pose = poses[0].pose;
         skeleton = poses[0].skeleton;
@@ -154,6 +154,18 @@ function randomNotifications() {
                     }
                 });
             }, (frequentTime * 2) * 60 * 1000);
+
+        setTimeout(
+            function() {
+                Push.create('Time for a break!', {
+                    body: "Click on this notification to take a break. x minutes have passed.",
+                    onClick: function () {
+                        window.location.href = "./timer/timer_index.html"
+                        this.close();
+                    }
+                });
+            }, ((frequentTime * 3) * 60 * 1000)
+        );
 }
 
 function testHyperlink() {
@@ -371,40 +383,60 @@ function drawKeyPoints() {
 //    }   
 //}
 
+function personNotFound() {
+    if (used == false) {
+        console.log("Nobody is behind the camera.");
+        let timeout = setTimeout(function() { window.location.href ="./timer/timer_index.html" }, 10000);
+
+        Push.create('Are you still here?', {
+            body: "Click on this notification if you are here.",
+            onClick: function () {
+                clearTimeout(timeout);
+                console.log("Person back.");
+                used = false;
+                this.close();
+            }
+        });
+        used = true;
+    }    
+}
+
 function detectOutOfCanvas(){
     const nose = pose.nose;
     const leftShoulder = pose.leftShoulder;
     const rightShoulder = pose.rightShoulder;
-    console.log("x"+nose.x);
-    console.log("y"+nose.y);
+    // console.log("x"+nose.x);
+    // console.log("y"+nose.y);
     if (nose && nose.x && nose.y){
-        if (nose.x < 0 || nose.x >= 800){
-            console.log("nose x position is out of the image");
+        if (nose.x < 0 || nose.x >= 640){
+            personNotFound();
+            
+            // console.log("nose x position is out of the image");
         }
     }
-    if (nose && nose.x && nose.y){
-        if (nose.y < 0 || nose.y >= 600){
-            console.log("nose y position is out of the image");
-        }
-    }
-    if (leftShoulder && leftShoulder.x && leftShoulder.y){
-        if (leftShoulder.y < 0 || leftShoulder.y >= 600){
-            console.log("leftShoulder y position is out of the image");
-        }
-    }
-    if (leftShoulder && leftShoulder.x && leftShoulder.y){
-        if (leftShoulder.x < 0 || leftShoulder.x >= 800){
-            console.log("leftShoulder x position is out of the image");
-        }
-    }
-    if (rightShoulder && rightShoulder.x && rightShoulder.y){
-        if (rightShoulder.x < 0 || rightShoulder.x >= 800){
-            console.log("rightShoulder x position is out of the image");
-        }
-    }
-    if (rightShoulder && rightShoulder.x && rightShoulder.y){
-        if (rightShoulder.y < 0 || rightShoulder.y >= 600){
-            console.log("rightShoulder y position is out of the image");
-        }
-    }
+    // if (nose && nose.x && nose.y){
+    //     if (nose.y < 0 || nose.y >= 480){
+    //         console.log("nose y position is out of the image");
+    //     }
+    // }
+    // if (leftShoulder && leftShoulder.x && leftShoulder.y){
+    //     if (leftShoulder.y < 0 || leftShoulder.y >= 480){
+    //         console.log("leftShoulder y position is out of the image");
+    //     }
+    // }
+    // if (leftShoulder && leftShoulder.x && leftShoulder.y){
+    //     if (leftShoulder.x < 0 || leftShoulder.x >= 640){
+    //         console.log("leftShoulder x position is out of the image");
+    //     }
+    // }
+    // if (rightShoulder && rightShoulder.x && rightShoulder.y){
+    //     if (rightShoulder.x < 0 || rightShoulder.x >= 640){
+    //         console.log("rightShoulder x position is out of the image");
+    //     }
+    // }
+    // if (rightShoulder && rightShoulder.x && rightShoulder.y){
+    //     if (rightShoulder.y < 0 || rightShoulder.y >= 480){
+    //         console.log("rightShoulder y position is out of the image");
+    //     }
+    // }
 }
