@@ -1,124 +1,303 @@
-<!DOCTYPE html>
-<html lang="en'>
-    <head>
-        <meta charset="utf-8>
-        <title>Bodywatch</title>
-        <link rel="manifest" href="manifest.json">
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="shortcut icon" type="image/png" href="favicon.ico">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Bodywatch</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
-        <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js" type="text/javascript"></script>
-        <meta name="theme-color" content="white"/>
-    </head>
-    <body class="fullscreen">
-        <script src="js/main.js"></script>
-        <!-- <button type="button" onclick="displayStartPose()">I am sitting correct</button>
-        <button type="button" onclick="displayBadPose()">This is my bad pose</button>
-        <p id="start">Checking for startPose..</p>
-        <p id="bad">Checking for badPose..</p> -->
-        <!-- <button onclick="playSound('bing');">Play</button> -->
-        <!-- <button onclick="showMenu()">Show Menu</button>  
-        <div id="myMenu">
-            <button type="button" onclick="showNotificaton()">Test Notification</button>
-            <button type="button" onclick="displayStartPose()">This is my best pose</button>
-            <button type="button" onclick="displayBadPose()">This is my worst pose</button>
-            <p id="start">Checking for startPose..</p>
-            <p id="bad">Checking for badPose..</p>
-            <button onclick="muteSwitch()">Mute/Unmute</button>
-            <div id="myMute">unmuted</div> 
-            <br>
-            <button onclick="popupSwitch()">showNotification</button>
-            <div id="myPopup">true</div>
-            <br>
-            <a href="timer/timer_index.html">
-                <button>visit Break Countdown</button>
-            </a> 
-        </div>  -->
-        <button onclick="showTutorial()">Show Tutorial</button>
-        <div id="myTutorial"> 
-            <img src="img/correct_pose_test.png" id="myImage">
-            <p div id="tutorialText">Take a seat and take a comfortable working pose when you have the correct pose click this is my best pose (hier kan nog een stap bij stap hoe een algemene goede pose eruit ziet en hoe je die aanneemt)</p>
-            <input type="button" onclick="tutorialSwitch()" value="Next" />          
-        </div> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-        <!-- Trigger/Open The Modal -->
-        <button id="myBtn">Open Settings</button>
-        
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
-            <!-- Modal content -->
-            <div class="modal-content">
-              <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Settings Header</h2>
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="home-section">
+  
+
+  <div id="overlayer"></div>
+  <div class="loader">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+  <div class="site-wrap">
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+   
+    
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner" >
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-6 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="index.html" class="h2 mb-0">Bodywatch<span class="text-primary">.</span> </a></h1>
+          </div>
+
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li><a href="#home-section" class="nav-link">Home</a></li>
+                <li><a href="bodywatch-application/index2.html" class="nav-link">Bodywatch Application</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
+        </div>
+      </div>
+    </header>
+
+  
+    <section class="site-blocks-cover overflow-hidden bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 align-self-center text-center text-md-left">
+            <div class="intro-text">
+              <h1>We Care For <span class="d-md-block">Your Posture</span></h1>
+              <!-- <p class="mb-4">We always try to provide your dog the best<span class="d-block"> services.</p> -->
+            </div>
+          </div>
+          <!-- <div class="col-md-5 align-self-end text-center text-md-right">
+            <img src="images/pose.png" alt="Image" class="img-fluid cover-img">
+          </div> -->
+        </div>
+      </div>
+    </section> 
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row justify-content-center" data-aos="fade-up">
+          <div class="col-lg-6 text-center heading-section mb-5">
+            <div class="paws">
+            </div>
+            <h2 class="text-black mb-2">Welcome to Bodywatch</h2>
+            <p>First we will explain a little bit about our application so you can use it to it's fullest</p>
+          </div>
+        </div>
+
+        <div class="row hover-1-wrap mb-5 mb-lg-0">
+          <div class="col-12">
+            <div class="row">
+              <div class="mb-4 mb-lg-0 col-lg-6 order-lg-2" data-aos="fade-right">
+                  <a  data-fancybox data-ratio="1.5" href="https://www.youtube.com/embed/mLyOj_QD4a4" class="video-img">
+              <img src="images/configure_pose.gif" alt="Image" class="img-fluid" style="margin-bottom: 30px;">
+            </a>
               </div>
-              <div class="modal-body">
-                <p>Here you can modify some settings</p>
-                <button type="button" onclick="showNotificaton()">Test Notification</button>
-                <button type="button" onclick="displayStartPose()">This is my best pose</button>
-                <button type="button" onclick="displayBadPose()">This is my worst pose</button>
-                <p id="start">Checking for startPose..</p>
-                <p id="bad">Checking for badPose..</p>
-                <button onclick="muteSwitch()">Notification sound</button>
-                <div id="myMute">unmuted</div>
-                <br>
-                <button onclick="popupSwitch()">show Notification</button>
-                <div id="myPopup">true</div>
-                <br>
-                <a href="timer/timer_index.html">
-                    <button>visit Break Countdown</button>
-                </a>
-                <br>
-                <p>How long between random notifications (think motiviation, tips and tricks) (in minutes)</p>
-                <input type="text" id="myFrequentTime" value="15">
-                <button type="button" onclick="myFrequentTime()">Enter</button>
-                <br>
-                <p>How long between good pose check (in minutes)</p>
-                <input type="text" id="myGoodPoseTime" value="60">
-                <button type="button" onclick="myGoodPoseTime()">Enter</button>
-                <br>
-              </div>
-              <div class="modal-footer">
-                <h3>Settings Footer</h3>
+              <div class="col-lg-5 mr-auto text-lg-right align-self-center order-lg-1" data-aos="fade-left">
+                <h2 class="text-black">Configure your application</h2>
+                <p class="mb-4">Show the application what your good pose is and what your bad pose is.</p>
               </div>
             </div>
           </div>
-    
-        <!-- dit moet ik even hier laten voor de settings popup -->
-        <script>  
-        // Get the modal
-        var modal = document.getElementById("myModal");
-                    
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-        
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-        modal.style.display = "block";
-        }
-        
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-        modal.style.display = "none";
-        }
-        
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-            }
-        }
-        </script>      
-        <!-- dit moet ik even hier laten voor de settings popup -->
+        </div>
 
-        <div id="sound"></div>
-    </body>
+        <div class="row hover-1-wrap mb-5 mb-lg-0">
+          <div class="col-12">
+            <div class="row">
+              <div class="mb-4 mb-lg-0 col-lg-6"  data-aos="fade-left">
+                  <img src="images/notification1.png" alt="Image" class="img-fluid">
+                  <img src="images/notification2.png" alt="Image" class="img-fluid">
+                  <img src="images/notification3.png" alt="Image" class="img-fluid">
+              </div>
+              <div class="col-lg-5 ml-auto align-self-center"  data-aos="fade-right">
+                <h2 class="text-black">Notifications</h2>
+                <p class="mb-4">Get notifications based on your pose! We will notify you for the following: 
+                  <br> <b>Watch your pose:</b> We will let you know if you aren't sitting properly. <br>
+                  <br> <b>Keep it up:</b> To motivate <b>YOU</b> to sit properly, we give you a sticker!<br>
+                  <br> <b>Time for a break:</b> Break times are needed. Just click this notification to start your break.<br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row hover-1-wrap">
+          <div class="col-12">
+            <div class="row">
+              <div class="mb-4 mb-lg-0 col-lg-6 order-lg-2" data-aos="fade-right">
+                  <img src="images/settings.png" alt="Image" class="img-fluid">
+              </div>
+              <div class="col-lg-5 mr-auto text-lg-right align-self-center order-lg-1" data-aos="fade-left">
+                <h2 class="text-black">Change settings</h2>
+                <p class="mb-4">Change settings based on your own preference. You can change the following settings:
+                  <br>Mute or unmute sound. 
+                  <br>Change time between the notifications given. (except the bad pose and break timer)
+                  <br>Change period between good pose checks. 
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section" id="about-section">
+      <div class="container">
+        <div class="row justify-content-center" data-aos="fade-up">
+          <div class="col-lg-5 align-self-center mr-auto text-left heading-section mb-5">
+            <h2 class="text-black mb-3">Pauze page</h2>
+            <p class="mb-4">Wat is het wat doet het wat is het nut van het leven</p>
+            
+          </div>
+          <div class="col-lg-6 text-left heading-section mb-5"  data-aos="fade-up" data-aos-delay="100">
+            <img src="images/placeholder6.gif" alt="Image" class="img-fluid">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section> 
+    
+    <section class="site-section bg-primary trainers" id="trainers-section">
+      <div class="container">
+        <div class="row justify-content-center" data-aos="fade-up">
+          <div class="col-lg-7 text-center heading-section mb-5">
+            <div class="paws white">
+            </div>
+            <h2 class="mb-2 heading">The Team</h2>
+          </div>
+        </div>
+        <div class="row">
+         
+          <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="">
+            <div class="trainer">
+              <figure>
+              <img src="images/teamholder.jpg" alt="Image" class="img-fluid">
+              </figure>
+              <div class="px-md-3">
+                <h3>Pranawa</h3>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                <ul class="ul-social-circle">
+                  <li><a href="#"><span class="icon-twitter"></span></a></li>
+                  <li><a href="#"><span class="icon-instagram"></span></a></li>
+                  <li><a href="#"><span class="icon-facebook"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="trainer">
+              <figure>
+              <img src="images/teamholder1.jpg" alt="Image" class="img-fluid">
+              </figure>
+              <div class="px-md-3">
+                <h3>Canberk</h3>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                <ul class="ul-social-circle">
+                  <li><a href="#"><span class="icon-twitter"></span></a></li>
+                  <li><a href="#"><span class="icon-instagram"></span></a></li>
+                  <li><a href="#"><span class="icon-facebook"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up"  data-aos-delay="200">
+            <div class="trainer">
+              <figure>
+              <img src="images/teamholder2.jpg" alt="Image" class="img-fluid">
+              </figure>
+              <div class="px-md-3">
+                <h3>Diderick</h3>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                <ul class="ul-social-circle">
+                  <li><a href="#"><span class="icon-twitter"></span></a></li>
+                  <li><a href="#"><span class="icon-instagram"></span></a></li>
+                  <li><a href="#"><span class="icon-facebook"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up"  data-aos-delay="200">
+            <div class="trainer">
+              <figure>
+              <img src="images/teamholder3.jpg" alt="Image" class="img-fluid">
+              </figure>
+              <div class="px-md-3">
+                <h3>Bilal</h3>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                <ul class="ul-social-circle">
+                  <li><a href="#"><span class="icon-twitter"></span></a></li>
+                  <li><a href="#"><span class="icon-instagram"></span></a></li>
+                  <li><a href="#"><span class="icon-facebook"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up"  data-aos-delay="200">
+            <div class="trainer">
+              <figure>
+              <img src="images/teamholder4.jpg" alt="Image" class="img-fluid">
+              </figure>
+              <div class="px-md-3">
+                <h3>Gregory</h3>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                <ul class="ul-social-circle">
+                  <li><a href="#"><span class="icon-twitter"></span></a></li>
+                  <li><a href="#"><span class="icon-instagram"></span></a></li>
+                  <li><a href="#"><span class="icon-facebook"></span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    
+    <div class="row pt-5 mt-5 text-center">
+      <div class="col-md-12">
+        <div class="border-top pt-5">
+          <p class="copyright"><small>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
+        </div>
+      </div>
+      
+    </div>
+
+
+  </div> <!-- .site-wrap -->
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/isotope.pkgd.min.js"></script>
+
+  
+  <script src="js/main2.js"></script>
+
+  
+  </body>
 </html>
