@@ -287,14 +287,14 @@ function printBadSession(){
 //veranderd de 'houding is correct' van groen -> rood en de tekst
 function changeColorToBad() {
     document.getElementById("gwd-div-uhf8").style.backgroundColor = "red";
-    document.getElementById("gwd-span-1rvu").innerHTML = "De houding is incorrect!";
+    document.getElementById("gwd-span-1rvu").innerHTML = "Your posture is wrong!";
 }
 
 //veranderd de 'houding is incorrect' van rood -> groen en de tekst
 function changeColorToGood() {
     document.getElementById("gwd-div-uhf8").style.backgroundColor= 'rgb(' + 63 + ',' + 255 + ',' + 0 + ')';
     //document.getElementById("gwd-div-uhf8").style.backgroundColor = "lightgreen";
-    document.getElementById("gwd-span-1rvu").innerHTML = "De houding is correct!";
+    document.getElementById("gwd-span-1rvu").innerHTML = "Your posture is correct! Good job :)";
 }
 
 //met deze functie vullen we de tips veld op het scherm met tips / motivatie
@@ -303,22 +303,22 @@ function randomTips(){
     var textField = document.getElementById("tipsText");
     setTimeout(
         function() {
-            textField.innerHTML = "Tip 1"
+            textField.innerHTML = "Please take short brakes, dont work for more than two hours at the time"
         }, tipsTime * 60 * 1000); //staat nu op een halve minuut moeten voor echte productie tijd nog aanpassen misschien settings optie voor gebruiker?? net als frequente notificatie
 
     setTimeout(
         function() {
-            textField.innerHTML = "Tip 2"
+            textField.innerHTML = "Remember to stretch!"
         }, (tipsTime * 2) * 60 * 1000); //staat op 1 minuut
     
     setTimeout(
         function() {
-            textField.innerHTML = "Tip 3"
+            textField.innerHTML = "This software is not a medical expert, please see one if needed"
         }, (tipsTime * 3) * 60 * 1000); //staat op anderhalf minuut
 
     setTimeout(
         function() {
-            textField.innerHTML = "Tip 4"
+            textField.innerHTML = "Stress can cause backpains! Remember to take a break once in a while!"
         }, (tipsTime * 4) * 60 * 1000); //staat op anderhalf minuut
         //misschien bij de laatste call de functie opnieuw aanroepen voor een loop
         // randomTips();
