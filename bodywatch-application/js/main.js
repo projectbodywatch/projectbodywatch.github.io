@@ -28,11 +28,14 @@ let muteCheck = 'unmuted'
 let showPopup = 'true'
 let step = "starting_pose";
 let reward_good_pose = 'true';
-let frequentTime = 15; //voor nu staat hij op 0.25 om te testen maar in productie zou hij bijvoorbeeld 15 staan voor elke kwartier een notification
-let goodPoseTime = 1; //voor nu staat hij op 1 om te testen maar in productie zou hij bijvoorbeeld elke uur kunnen aangeven of je fout heb gezeten
-let tipsTime = 1;
+let frequentTime = 15; 
+let goodPoseTime = 30;
+let tipsTime = 10;
 let badpose_per_session = [];
-let badposeCounter_per_session = 0;
+let badposeCounter_per_session = 0; //deze session storage maken
+let pausesTaken = 0; //deze session storage maken
+let goodPoseCounter_per_session = 0; //deze session storage maken
+//let timeStarted - timeEnded = timeSpentSession
 let used = false;
 
 function setup() {
@@ -152,6 +155,7 @@ function randomNotifications() {
                     icon: 'img/breaktime.png',
                     onClick: function () {
                         window.location.href = "./timer/timer_index.html"
+                        pausesTaken =+ 1;
                         this.close();
                     }
                 });
@@ -272,7 +276,7 @@ function recordBadPose() {
 //print de array op het scherm (nieuwste komt boven)
 function printBadSession(){
     for (let index = 0; index < badpose_per_session.length; index++) {
-        console.log(badpose_per_session[index]);
+        //console.log(badpose_per_session[index]);
     }
 
     text = "<ul>";
@@ -297,6 +301,28 @@ function changeColorToGood() {
     document.getElementById("gwd-span-1rvu").innerHTML = "Your posture is correct! Good job :)";
 }
 
+        //DIT MOET IK NOG STORAGE MAKEN 
+        function showStatistics() {
+            document.getElementById("badPoses").innerHTML = badposeCounter_per_session;
+            document.getElementById("goodPoses").innerHTML = goodPoseCounter_per_session;
+            document.getElementById("amountBreaks").innerHTML = pausesTaken;
+            document.getElementById("timeWorked").innerHTML = 324234;
+        }
+
+        function pauseTesting(){
+            pausesTaken =+ 1;
+            console.log(pausesTaken);
+            console.log("hallo");
+        }
+
+        function collectStatistics()
+        {
+            localStorage.setItem("badPoseCounter", badposeCounter_per_session);
+            var testing = localStorage.getItem("badPoseCounter")
+            console.log(testing);
+        }
+        //DIT MOET IK NOG STORAGE MAKEN 
+
 //met deze functie vullen we de tips veld op het scherm met tips / motivatie
 //denk aan tips, motivatie die mensen zien als ze op de page zelf zijn niet perse belangrijke dingen
 function randomTips(){
@@ -320,8 +346,23 @@ function randomTips(){
         function() {
             textField.innerHTML = "Stress can cause backpains! Remember to take a break once in a while!"
         }, (tipsTime * 4) * 60 * 1000); //staat op anderhalf minuut
-        //misschien bij de laatste call de functie opnieuw aanroepen voor een loop
-        // randomTips();
+
+    setTimeout(
+        function() {
+            textField.innerHTML = "Stuck on something, try to take a little break to clear your mind."
+        }, (tipsTime * 5) * 60 * 1000); //staat op anderhalf minuut
+
+    setTimeout(
+        function() {
+            textField.innerHTML = "Did you know that a good pose, also improves your productivity."
+        }, (tipsTime * 6) * 60 * 1000); //staat op anderhalf minuut
+
+        setTimeout(
+            function() {
+                textField.innerHTML = "A break helps your focus"
+            }, (tipsTime * 7) * 60 * 1000); //staat op anderhalf minuut
+            //misschien bij de laatste call de functie opnieuw aanroepen voor een loop
+            // randomTips();
 }
 
 //functie zodat om de x minuten word gecheckt of de gebruiker in die tijd een foute pose heeft gehad
@@ -422,7 +463,6 @@ function drawKeyPoints() {
                 recordBadPose();
                 printBadSession();
                 badposeCounter_per_session += 1;
-
                 changeColorToBad();
             } 
     }

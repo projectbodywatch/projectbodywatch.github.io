@@ -1,0 +1,40 @@
+<head>    
+    <link rel="stylesheet" href="endpage.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<h1>Statistic Page</h1>
+<h3>Show me the numbers!</h3>
+<body>   
+    <script src="endpage.js"></script>
+    <script src="../js/main.js"></script>
+
+    <div class="wrapper">
+        <div class="counter col_fourth">
+            <i class="fa fa-frown-o fa-2x"></i>
+            <h2 class="timer count-title count-number"  id="badPoses" data-to="1337" data-speed="2000"></h2>
+            <p class="count-text ">Amount of bad poses</p>
+        </div>
+
+        <div class="counter col_fourth">
+            <i class="fa fa-smile-o fa-2x"></i>
+            <h2 class="timer count-title count-number" id="goodPoses" data-to="1337" data-speed="2000"></h2>
+            <p class="count-text ">Amount of good poses</p>
+        </div>
+
+        <div class="counter col_fourth">
+            <i class="fa fa-coffee fa-2x"></i>
+            <h2 class="timer count-title count-number" id="amountBreaks" data-to="1337" data-speed="2000"></h2>
+            <p class="count-text ">Amount of breaks</p>
+        </div>
+
+        <div class="counter col_fourth end">
+            <i class="fa fa-clock-o fa-2x"></i>
+            <h2 class="timer count-title count-number" id="timeWorked" data-to="1337" data-speed="2000"></h2>
+            <p class="count-text ">Time worked this session</p>
+        </div>
+        <button onclick="showStatistics()">Show Statistics</button>
+
+    </div>
+</body>
