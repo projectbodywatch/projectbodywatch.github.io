@@ -1,4 +1,9 @@
-<head>    
+<!doctype html>
+<html lang="en">
+<head>   
+    <meta charset="utf-8">
+    <title>Bodywatch</title> 
+    <link rel="shortcut icon" type="image/png" href="../favicon.ico">
     <link rel="stylesheet" href="endpage.css">
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -6,7 +11,7 @@
 </head>
 <h1>Statistic Page</h1>
 <h3>Show me the numbers!</h3>
-<body>   
+<body onload="displayStatistics()">
     <script src="endpage.js"></script>
     <script src="../js/main.js"></script>
 
@@ -34,7 +39,5 @@
             <h2 class="timer count-title count-number" id="timeWorked" data-to="1337" data-speed="2000"></h2>
             <p class="count-text ">Time worked this session</p>
         </div>
-        <button onclick="showStatistics()">Show Statistics</button>
-
     </div>
 </body>

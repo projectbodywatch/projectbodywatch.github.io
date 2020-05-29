@@ -1,9 +1,23 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  margin-left: 5%;
+}
+
+h3 {
+  margin-left: 5%;
+}
+
 #stopwatch {
     background: #eee;
     border: 1px solid #999;
     padding: 20px;
     border-radius: 10px;
-    max-width: 250px;
+    max-width: 350px;
+    float: left;
+    margin-top: 20%;
   }
   #sw-time {
     font-size: 48px;
@@ -19,3 +33,53 @@
     border: 0;
     color: #fff;
   }
+
+.boxInBoxL {
+  float:left;
+  margin-left: 1%;
+  margin-right: 10%;
+  width: 35%;
+  height: 700px;
+}
+
+.boxInBox {
+  float:right;
+  overflow: auto;
+  margin-left: 50%;
+  width: 35%;
+  margin: 1%;
+  height: 780px;
+}
+
+.boxInBox2 {
+  overflow: auto;
+  width: 50%;
+  margin-left: 3%;
+  height: 800px;
+  float:right;
+}
+
+.box {
+  /* margin:auto; */
+  display: inline-block;
+  width: 100%;
+}
+
+.boxFoot {
+  position: fixed;
+  left: 1%;
+  bottom: 1%;
+  width: 30%;
+  height: 135px;
+}
+
+img.gif {
+  height: 400px;
+  width: 400px;
+  margin: 5%;
+}
+
+li {
+  margin-left: 5%;
+  margin-right: 5%;
+}

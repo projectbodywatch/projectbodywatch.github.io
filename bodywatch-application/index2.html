@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Bodywatch</title>
     <meta charset="utf-8">
     <title>Bodywatch</title>
     <style type="text/css" id="gwd-text-style"></style>
@@ -49,7 +48,7 @@
       <div class="gwd-div-1ke6">
         <div class="gwd-div-14zw">
           <a href="timer/timer_index.html">
-            <img src="img/pngkey.com-pause-icon-png-903453.png" onclick="pauseTesting()" class="gwd-img-6247">
+            <img src="img/pngkey.com-pause-icon-png-903453.png" onclick="takePause()" class="gwd-img-6247">
           </a>
           </div>
         <div class="gwd-div-1kx9">
@@ -74,9 +73,8 @@
     <div class="modal-body">
       <p>Here you can modify some settings</p>
       <br>
-      <button type="button" onclick="showNotificaton()">Test Notification</button>
-      <button type="button" onclick="displayStartPose()">This is my best pose</button>
-      <button type="button" onclick="displayBadPose()">This is my worst pose</button>
+      <button type="button" onclick="displayStartPose()">Click here if you are sitting in your comfortable pose</button>
+      <button type="button" onclick="displayBadPose()">Click here if you are sitting in your bad pose</button>
       <br>
       <br>
       <p id="start">Checking for startPose..</p>
@@ -106,6 +104,9 @@
       <br>
       <p><img src="img/save.png" onclick="testing_save();" /> 
       <img src="img/load.png" onclick="testing_load();" /></p>
+      <br>
+      <br>
+      <right><img src="img/stats.png" onclick="loadEndPage();"/></right>
     </div>
     <div class="modal-footer">
       <h3>Settings Footer</h3>

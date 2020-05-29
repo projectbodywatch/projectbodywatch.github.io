@@ -1,24 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
     <title>
-      Simple Javascript Stopwatch
+      Bodywatch Break room
     </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+    <link rel="shortcut icon" type="image/png" href="../favicon.ico">
     <link href="stopwatch.css" rel="stylesheet">
+    <script src="image.js"></script>
     <script src="stopwatch.js"></script>
+    <script src="../js/main.js"></script>
   </head>
-  <body>
-    <div id="stopwatch">
-      <!-- [DISPLAY TIMER] -->
-      <div id="sw-time">00:00:00</div>
-      <!-- [RESET BUTTON] -->
-      <input type="button" value="Reset" id="sw-rst" disabled/>
-      <!-- [START/STOP BUTTON] -->
-      <input type="button" value="Start" id="sw-go" disabled/>
+  <body class="htmlNoPages" onload="sw.start();">
+    <div>
+      <div class="gwd-div-hsq5">
+        <img src="../img/Text_logo_full.png" class="gwd-img-jszj">
+      </div>
     </div>
-    <br>
-    <a href="../index2.html">
-        <button>Done taking a break, take me back!</button>
-     </a>
+
+    <div class="box">
+      <div class="boxInBoxL">
+        <h1><b>Welcome</b></h1>
+        <p>Enjoy your break. Make sure to do some stretching after a long work session. Please refer to the images on the right.</p>
+        <p>Here are some helpful links for stretches and our sources.</p>
+        <ul>
+          <li><a href="https://www.healthline.com/health/deskercise#head-and-shoulders">Healthline</a></li>
+          <li><a href="https://www.pelvicexercises.com.au/">Pelvic Exercises Physiotherapy</a></li>
+          <li><a href="https://www.acatoday.org/Patients/What-is-Chiropractic/Back-Pain-Facts-and-Statistics/Back-Pain-Facts-and-Statistics">Back pain facts.</a></li>
+          <li><a href="https://medium.com/avatar-nutrition/11-best-office-stretches-for-slaying-zombie-posture-8ab79391aa46">More stretching exercises</a></li>
+          <li><a href="https://www.koenigchiro.com/plymouth-chiropractor/neck-pain-tips-from-a-chiropractor/">Neck pain tips</a></li>
+        </ul>
+    
+        <div id="stopwatch">
+          <!-- [DISPLAY TIMER] -->
+          <div id="sw-time">00:00:00</div>
+          <!-- [RESET BUTTON] -->
+          <input type="button" value="Reset" id="sw-rst" disabled/>
+          <!-- [START/STOP BUTTON] -->
+          <input type="button" value="Start" id="sw-go" disabled/>
+        </div>
+        <a href="../index2.html">
+          <button style="margin-top: 20%; float:left; width: 150px; height: 120px; text-align:center; font-size: 20px; ">Done taking a break, take me back!</button>
+        </a>
+      </div>
+     
+      <h1><b>Stretching exercises</b></h1>
+
+      <div class="boxInBox2">
+        
+
+        <h3>Forward stretch</h3>
+        <img class="gif" src="../img/forward_stretch.gif" >
+        <ol>
+          <li>Clasp your hands in front of you and lower your head in line with your arms.</li>
+          <li>Press forward and hold for 10 to 30 seconds.</li>
+        </ol>
+
+        <h3>Overhead reach</h3>
+        <img class="gif" src="../img/overhead_reach.gif">
+        <ol>
+          <li>Extend each arm overhead.</li>
+          <li>Reach to the opposite side.</li>
+          <li>Hold for 10 to 30 seconds.</li>
+          <li>Repeat on the other side.</li>
+        </ol>
+
+        <h3>Shoulder stretch</h3>
+        <img class="gif" src="../img/shoulder_stretch.gif">
+        <ol>
+          <li>Extend each arm overhead.</li>
+          <li>Reach to the opposite side.</li>
+          <li>Hold for 10 to 30 seconds.</li>
+          <li>Repeat on the other side.</li>
+        </ol>
+
+        <h3>Triceps stretches</h3>
+        <img class="gif" src="../img/shoulder_stretch.gif">
+        <ol>
+          <li>Raise your arm and bend it so that your hand reaches toward the opposite side.</li>
+          <li>Use your other hand and pull the elbow toward your head.</li>
+          <li>Hold for 10 to 30 seconds.</li>
+          <li>Repeat on the other side.</li>
+        </ol>
+
+        <h3>Upper body and arm stretch</h3>
+        <img class="gif" src="../img/upper_body_arm_stretch.gif">
+        <ol>
+          <li>Clasp your hands together above the head with palms facing outwards.</li>
+          <li>Push your arms up, stretching forward.</li>
+          <li>Hold the pose for 10 to 30 seconds.</li>
+        </ol>
+
+        <h3>Torso stretch</h3>
+        <img class="gif" src="../img/torso_stretch.gif">
+        <ol>
+          <li>Keep your feet firmly on the ground, facing forward.</li>
+          <li>Twist your upper body in the direction of the arm that's resting on the back of your chair.</li>
+          <li>Hold pose for 10 to 30 seconds.</li>
+          <li>Repeat on the other side.</li>
+        </ol>
+      </div>
+      
+    </div>    
+
+    
   </body>
 </html>
